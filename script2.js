@@ -6,55 +6,53 @@ var padding = { top: 20, right: 40, bottom: 20, left: 40 },
   oldrotation = 0,
   picked = 100000,
   // oldpick = [],
-  color = d3.scale.category20(); //category20c()
-//randomNumbers = getRandomNumbers();
-//http://osric.com/bingo-card-generator/?title=HTML+and+CSS+BINGO!&words=padding%2Cfont-family%2Ccolor%2Cfont-weight%2Cfont-size%2Cbackground-color%2Cnesting%2Cbottom%2Csans-serif%2Cperiod%2Cpound+sign%2C%EF%B9%A4body%EF%B9%A5%2C%EF%B9%A4ul%EF%B9%A5%2C%EF%B9%A4h1%EF%B9%A5%2Cmargin%2C%3C++%3E%2C{+}%2C%EF%B9%A4p%EF%B9%A5%2C%EF%B9%A4!DOCTYPE+html%EF%B9%A5%2C%EF%B9%A4head%EF%B9%A5%2Ccolon%2C%EF%B9%A4style%EF%B9%A5%2C.html%2CHTML%2CCSS%2CJavaScript%2Cborder&freespace=true&freespaceValue=Web+Design+Master&freespaceRandom=false&width=5&height=5&number=35#results
+  color = d3.scale.category20(); 
 var data = [
   {
     label: "सर्गः  1",
     value: 1,
     question: "सर्गः 1 श्लोकः " + Math.floor(Math.random() * 55 + 1),
-  }, // padding
+  }, 
   {
     label: "सर्गः  2",
     value: 2,
     question: "सर्गः 2 श्लोकः " + Math.floor(Math.random() * 54 + 1),
-  }, //fontfamily
+  }, 
   {
     label: "सर्गः  3",
     value: 3,
     question: "सर्गः 3 श्लोकः " + Math.floor(Math.random() * 56 + 1),
-  }, //color
+  },
   {
     label: "सर्गः  4",
     value: 4,
     question: "सर्गः 4 श्लोकः " + Math.floor(Math.random() * 54 + 1),
-  }, //fontweight
+  }, 
   {
     label: "सर्गः  5",
     value: 5,
     question: "सर्गः 5 श्लोकः " + Math.floor(Math.random() * 52 + 1),
-  }, //fontsize
+  }, 
   {
     label: "सर्गः  6",
     value: 6,
     question: "सर्गः 6 श्लोकः " + Math.floor(Math.random() * 57 + 1),
-  }, //backgroundcolor
+  }, 
   {
     label: "सर्गः  7",
     value: 7,
     question: "सर्गः 7 श्लोकः " + Math.floor(Math.random() * 59 + 1),
-  }, //nesting
+  }, 
   {
     label: "सर्गः  8",
     value: 8,
     question: "सर्गः 8 श्लोकः " + Math.floor(Math.random() * 54 + 1),
-  }, //bottom
+  }, 
   {
     label: "सर्गः  9",
     value: 9,
     question: "सर्गः 9 श्लोकः " + Math.floor(Math.random() * 55 + 1),
-  }, //sansserif
+  }, 
   {
     label: "सर्गः  10",
     value: 10,
@@ -123,7 +121,6 @@ container
     d3.select(this).style("fill", "white");
   });
 
-// Center spin text
 container
   .append("text")
   .attr("x", 0)
@@ -138,9 +135,7 @@ var pie = d3.layout
   .value(function (d) {
     return 1;
   });
-// declare an arc generator function
 var arc = d3.svg.arc().outerRadius(r);
-// select paths, use arc generator to draw
 var arcs = vis
   .selectAll("g.slice")
   .data(pie)
@@ -163,7 +158,6 @@ arcs
   .on("mouseout", function () {
     d3.select(this).style("opacity", 1);
   });
-// add the text
 arcs
   .append("text")
   .attr("transform", function (d) {
@@ -186,7 +180,6 @@ arcs
 container.on("click", spin);
 function spin(d) {
   container.on("click", null);
-  //all slices have been seen, all done
   // console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
   // if (oldpick.length == data.length) {
   //   console.log("done");
@@ -223,14 +216,11 @@ function spin(d) {
       d3.select("#question h1").text(data[picked].question);
       oldrotation = rotation;
 
-      /* Get the result value from object "data" */
       console.log(data[picked].value);
 
-      /* Comment the below line for restrict spin to sngle time */
       container.on("click", spin);
     });
 }
-//make arrow
 svg
   .append("g")
   .attr(
@@ -244,14 +234,12 @@ svg
   .append("path")
   .attr("d", "M-" + r * 0.15 + ",0L0," + r * 0.05 + "L0,-" + r * 0.05 + "Z")
   .style({ fill: "black" });
-//draw spin circle
 container
   .append("circle")
   .attr("cx", 0)
   .attr("cy", 0)
   .attr("r", 60)
   .style({ fill: "white", cursor: "pointer" });
-//spin text
 container
   .append("text")
   .attr("x", 0)
@@ -277,7 +265,6 @@ function getRandomNumbers() {
     window.crypto.getRandomValues(array);
     console.log("works");
   } else {
-    //no support for crypto, get crappy random numbers
     for (var i = 0; i < 1000; i++) {
       array[i] = Math.floor(Math.random() * 100000) + 1;
     }

@@ -5,7 +5,7 @@ var padding = { top: 20, right: 40, bottom: 20, left: 40 },
   rotation = 0,
   oldrotation = 0,
   picked = 100000,
-  oldpick = [],
+  // oldpick = [],
   color = d3.scale.category20(); //category20c()
 //randomNumbers = getRandomNumbers();
 //http://osric.com/bingo-card-generator/?title=HTML+and+CSS+BINGO!&words=padding%2Cfont-family%2Ccolor%2Cfont-weight%2Cfont-size%2Cbackground-color%2Cnesting%2Cbottom%2Csans-serif%2Cperiod%2Cpound+sign%2C%EF%B9%A4body%EF%B9%A5%2C%EF%B9%A4ul%EF%B9%A5%2C%EF%B9%A4h1%EF%B9%A5%2Cmargin%2C%3C++%3E%2C{+}%2C%EF%B9%A4p%EF%B9%A5%2C%EF%B9%A4!DOCTYPE+html%EF%B9%A5%2C%EF%B9%A4head%EF%B9%A5%2Ccolon%2C%EF%B9%A4style%EF%B9%A5%2C.html%2CHTML%2CCSS%2CJavaScript%2Cborder&freespace=true&freespaceValue=Web+Design+Master&freespaceRandom=false&width=5&height=5&number=35#results
@@ -98,7 +98,7 @@ var svg = d3
   .attr("width", w + padding.left + padding.right)
   .attr("height", h + padding.top + padding.bottom)
   .style("display", "block")
-  .style("font-size", "25px")
+  .style({"font-size": "25px"})
   .style("margin", "0 auto");
 
 var container = svg
@@ -187,26 +187,27 @@ container.on("click", spin);
 function spin(d) {
   container.on("click", null);
   //all slices have been seen, all done
-  console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
-  if (oldpick.length == data.length) {
-    console.log("done");
-    container.on("click", null);
-    return;
-  }
+  // console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
+  // if (oldpick.length == data.length) {
+  //   console.log("done");
+  //   container.on("click", null);
+  //   return;
+  // }
   var ps = 360 / data.length,
     pieslice = Math.round(1440 / data.length),
-    rng = Math.floor(Math.random() * 1440 + 360);
+    rng = Math.floor(Math.random() * 144099 + 360);
 
   rotation = Math.round(rng / ps) * ps;
 
   picked = Math.round(data.length - (rotation % 360) / ps);
+  // picked = Math.floor(Math.random() * 15);
   picked = picked >= data.length ? picked % data.length : picked;
-  if (oldpick.indexOf(picked) !== -1) {
-    d3.select(this).call(spin);
-    return;
-  } else {
-    oldpick.push(picked);
-  }
+  // if (oldpick.indexOf(picked) !== -1) {
+  //   d3.select(this).call(spin);
+  //   return;
+  // } else {
+  //   oldpick.push(picked);
+  // }
   rotation += 90 - Math.round(ps / 2);
   vis
     .transition()
@@ -214,10 +215,10 @@ function spin(d) {
     .attrTween("transform", rotTween)
     .each("end", function () {
       //mark question as seen
-      d3.select(".slice:nth-child(" + (picked + 1) + ") path").attr(
-        "fill",
-        "#111"
-      );
+      // d3.select(".slice:nth-child(" + (picked + 1) + ") path").attr(
+      //   "fill",
+      //   "#111"
+      // );
       //populate question
       d3.select("#question h1").text(data[picked].question);
       oldrotation = rotation;

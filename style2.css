@@ -47,7 +47,7 @@ text {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0;
   margin: 0;
-  top: 50%;
+  top: 30%;
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
   color:  #301bf0;
@@ -57,7 +57,7 @@ text {
 
 }
 
-#question h1:hover {
+#question h1:hover, h1:hover {
   color: #efc81b;
   transform: translate(0, -50%) scale(1.05);
 }
@@ -91,4 +91,24 @@ text {
 #chart text::selection {
   background: #007acc;
   color: #fff;
+}
+
+h1 {
+  font-size: 70px;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 4%;
+  left: 3%;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bolder;
+  color: #f3270c;
+  animation: glow 2s infinite alternate;
+
 }

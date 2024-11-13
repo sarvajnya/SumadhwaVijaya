@@ -122,10 +122,12 @@ container
 
 container
   .append("text")
+  .attr("id", "centerText")
   .attr("x", 0)
   .attr("y", 15)
   .attr("text-anchor", "middle")
-  .text("सुमध्वविजयः")
+  .text('START!')
+  // .text("सुमध्वविजयः")
   .style({ "font-weight": "bold", "font-size": "20px" });
 
 var pie = d3.layout
@@ -180,6 +182,8 @@ arcs
 container.on("click", spin);
 function spin(d) {
   container.on("click", null);
+
+  d3.select("#centerText").text("WAIT!");
   
   var ps = 360 / data.length,
     pieslice = Math.round(1440 / data.length),

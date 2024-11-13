@@ -219,6 +219,11 @@ function spin(d) {
       console.log(data[picked].value);
 
       container.on("click", spin);
+      container.on("click",
+        setTimeout(() => {
+          location.reload();
+      }, 2000)
+      );
     });
 }
 svg

@@ -5,7 +5,6 @@ var padding = { top: 20, right: 40, bottom: 20, left: 40 },
   rotation = 0,
   oldrotation = 0,
   picked = 100000,
-  // oldpick = [],
   color = d3.scale.category20(); 
 var data = [
   {
@@ -181,12 +180,7 @@ arcs
 container.on("click", spin);
 function spin(d) {
   container.on("click", null);
-  // console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
-  // if (oldpick.length == data.length) {
-  //   console.log("done");
-  //   container.on("click", null);
-  //   return;
-  // }
+  
   var ps = 360 / data.length,
     pieslice = Math.round(1440 / data.length),
     rng = Math.floor(Math.random() * 144099 + 360);
@@ -194,26 +188,15 @@ function spin(d) {
   rotation = Math.round(rng / ps) * ps;
 
   picked = Math.round(data.length - (rotation % 360) / ps);
-  // picked = Math.floor(Math.random() * 15);
   picked = picked >= data.length ? picked % data.length : picked;
-  // if (oldpick.indexOf(picked) !== -1) {
-  //   d3.select(this).call(spin);
-  //   return;
-  // } else {
-  //   oldpick.push(picked);
-  // }
+  
   rotation += 90 - Math.round(ps / 2);
   vis
     .transition()
     .duration(3000)
     .attrTween("transform", rotTween)
     .each("end", function () {
-      //mark question as seen
-      // d3.select(".slice:nth-child(" + (picked + 1) + ") path").attr(
-      //   "fill",
-      //   "#111"
-      // );
-      //populate question
+      
       d3.select("#question h1").text(data[picked].question);
       oldrotation = rotation;
 
@@ -240,19 +223,7 @@ svg
   .append("path")
   .attr("d", "M-" + r * 0.15 + ",0L0," + r * 0.05 + "L0,-" + r * 0.05 + "Z")
   .style({ fill: "black" });
-container
-  .append("circle")
-  .attr("cx", 0)
-  .attr("cy", 0)
-  .attr("r", 60)
-  .style({ fill: "white", cursor: "pointer" });
-container
-  .append("text")
-  .attr("x", 0)
-  .attr("y", 15)
-  .attr("text-anchor", "middle")
-  .text("सुमध्वविजयः")
-  .style({ "font-weight": "bold", "font-size": "20px" });
+
 
 function rotTween(to) {
   var i = d3.interpolate(oldrotation % 360, rotation);
@@ -261,19 +232,4 @@ function rotTween(to) {
   };
 }
 
-function getRandomNumbers() {
-  var array = new Uint16Array(1000);
-  var scale = d3.scale.linear().range([360, 1440]).domain([0, 100000]);
-  if (
-    window.hasOwnProperty("crypto") &&
-    typeof window.crypto.getRandomValues === "function"
-  ) {
-    window.crypto.getRandomValues(array);
-    console.log("works");
-  } else {
-    for (var i = 0; i < 1000; i++) {
-      array[i] = Math.floor(Math.random() * 100000) + 1;
-    }
-  }
-  return array;
-}
+

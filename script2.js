@@ -222,7 +222,7 @@ function spin(d) {
       container.on("click",
         setTimeout(() => {
           location.reload();
-      }, 2000)
+      }, 5000)
       );
     });
 }

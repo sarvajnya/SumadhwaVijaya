@@ -175,7 +175,8 @@ arcs
   .attr("text-anchor", "end")
   .text(function (d, i) {
     return data[i].label;
-  });
+  })
+  .style({"font-size": "20px","font-weight": "bold"});
 
 container.on("click", spin);
 function spin(d) {

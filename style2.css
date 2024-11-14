@@ -26,7 +26,7 @@ text {
 
 #question {
   position: absolute;
-  width: 400px;
+  width: 280px;
   height: 500px;
   top: 50%;
   left: 70%;
@@ -47,7 +47,7 @@ text {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0;
   margin: 0;
-  top: 30%;
+  top: 10%;
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
   color:  #301bf0;
